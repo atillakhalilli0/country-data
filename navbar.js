@@ -14,11 +14,11 @@ function showRegions() {
       
       const desktopMenu = document.getElementById("desktop-regions-menu")
       desktopMenu.innerHTML = uniqueRegions.map(region => `
-        <a href="http://127.0.0.1:5500/regions.html?id=${region}" class="px-3 py-2 text-gray-700 hover:text-indigo-600 hover:underline transition duration-300">${region}</a>
+        <a href="https://country-explorer-by-atilla.vercel.app/regions.html?id=${region}" class="px-3 py-2 text-gray-700 hover:text-indigo-600 hover:underline transition duration-300">${region}</a>
       `).join("")
       
       mobileRegionsMenu.innerHTML = uniqueRegions.map(region => `
-        <a href="http://127.0.0.1:5500/regions.html?id=${region}" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">${region}</a>
+        <a href="https://country-explorer-by-atilla.vercel.app/regions.html?id=${region}" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">${region}</a>
       `).join("")
     })
     .catch(error => console.error("Error fetching regions:", error))

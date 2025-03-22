@@ -16,7 +16,7 @@ function allFlags(){
         let output = ""
         countries.sort((a, b) => Number(a.callingCodes[0]) - Number(b.callingCodes[0])).slice(0, count).forEach(country => {
             output+= `
-                    <a href="http://127.0.0.1:5500/details.html?id=${country.alpha3Code}" class="w-full max-w-sm flex flex-col rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 bg-white dark:bg-gray-800">
+                    <a href="https://country-explorer-by-atilla.vercel.app/details.html?id=${country.alpha3Code}" class="w-full max-w-sm flex flex-col rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 bg-white dark:bg-gray-800">
                         <div class="relative w-full h-48">
                             <img class="w-full h-full object-cover" src="${country.flag}" alt="${country.name} flag">
                             <div class="absolute top-2 right-2 bg-gray-800 bg-opacity-75 text-white px-2 py-1 rounded text-xs font-semibold">
