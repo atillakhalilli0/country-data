@@ -79,8 +79,9 @@
                 const timezones = country.timezones.join(', ')
                 
                 const borders = country.borders && country.borders.length > 0 
-                    ? country.borders.join(', ')
-                    : 'None (Island or no land borders)'
+                ? country.borders.map(border => `<a href="https://country-explorer-by-atilla.vercel.app/details.html?id=${border}" class="text-purple-700 hover:underline">${border}</a>`).join(', ')
+                : 'None (Island or no land borders)';
+
                 
                     countryDetails.innerHTML = `
                     <div class="bg-blue-950 border-[3px] border-red-900 rounded-lg shadow-xl overflow-hidden">
