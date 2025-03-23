@@ -6,8 +6,9 @@
     <title>Learn World Flags</title>
     <link rel="shortcut icon" href="img/earth.png" type="image/x-icon">
     <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
+<body class="bg-gray-200">
     <nav id="navbar">
         <div class="bg-white shadow-md fixed w-full top-0 left-0 z-50">
             <div class="container mx-auto px-4">
@@ -38,12 +39,17 @@
           </div>
     </nav>
     
-    <main class="container mx-auto">
-        <div id="allCards" class="my-[200px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"></div>
-        <button id="loadBtn" onclick="loadMore()" class="py-3 w-full text-center rounded-xl mb-10 text-xl text-white bg-red-600">Load more...</button>
+    <main class="container mx-auto mt-[150px]">
+      <div class="w-full flex flex-col items-center text-center">
+        <h1 class="text-5xl mb-8 text-purple-700 capitalize font-bold">Have a look at this country...</h1>
+        <div id="randomCountry"></div>
+      </div>      
+      <div id="allCards" class="my-[100px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"></div>
+      <button id="loadBtn" onclick="loadMore()" class="py-3 w-full text-center rounded-xl mb-10 text-xl text-white bg-purple-700">Load more...</button>
     </main>
     <script src="navbar.js"></script>
     <script src="allCards.js"></script>
     <script src="search.js"></script>
+    <script src="randomCountry.js"></script>
 </body>
 </html>
