@@ -1,18 +1,22 @@
+import { getData } from "./service.js";
+
+let data
+async function verData() {
+    data = await getData()
+    randCountry()
+}
+verData()   
+
 const randomCountry = document.getElementById("randomCountry");
 
 function randCountry() {
-  fetch(
-    "https://raw.githubusercontent.com/TheOksigen/purfect_data/refs/heads/main/country.json"
-  )
-    .then((response) => response.json())
-    .then((countries) => {
-      if (!countries || countries.length === 0) {
+      if (!data || data.length === 0) {
         randomCountry.innerHTML = "<p>No country data available.</p>";
         return;
       }
 
-      let randomIndex = Math.floor(Math.random() * countries.length);
-      let country = countries[randomIndex];
+      let randomIndex = Math.floor(Math.random() * data.length);
+      let country = data[randomIndex];
 
       randomCountry.innerHTML = `
         <a href="https://country-explorer-by-atilla.vercel.app/details.html?id=${country.alpha3Code}" class="w-full max-w-sm flex flex-col rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 bg-white dark:bg-gray-800">
@@ -49,11 +53,6 @@ function randCountry() {
                             <span class="text-sm text-blue-600 dark:text-blue-400 font-medium">View details →</span>
                         </div>
                     </a>`;
-    })
-    .catch((error) => {
-      console.error("Error fetching country data:", error);
-      randomCountry.innerHTML = "<p>Failed to load data.</p>";
-    });
 }
 
 randCountry();
