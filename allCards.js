@@ -1,20 +1,31 @@
+import { getData } from "./service.js";
+
+
+let data
+async function verData() {
+    data = await getData()
+    allFlags()
+}
+verData()   
+
 const allCards = document.getElementById("allCards")
 const loadBtn = document.getElementById("loadBtn")
 
 let count = 8
 
-function loadMore() {
+window.loadMore = function() {    
     count += 8
     allFlags()
     loadBtn.style.display = count == 250 ? "none" : "block"
   }
 
+ 
+  
 function allFlags(){
-    fetch("https://raw.githubusercontent.com/TheOksigen/purfect_data/refs/heads/main/country.json")
-    .then((response) => response.json())
-    .then((countries) =>{
         let output = ""
-        countries.sort((a, b) => Number(a.callingCodes[0]) - Number(b.callingCodes[0])).slice(0, count).forEach(country => {
+        data
+        .sort((a, b) => Number(a.callingCodes[0]) - Number(b.callingCodes[0])).slice(0, count)
+        .forEach(country => {
             output+= `
                     <a href="https://country-explorer-by-atilla.vercel.app/details.html?id=${country.alpha3Code}" class="w-full max-w-sm flex flex-col rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 bg-white dark:bg-gray-800">
                         <div class="relative w-full h-48">
@@ -50,12 +61,9 @@ function allFlags(){
                             <span class="text-sm text-blue-600 dark:text-blue-400 font-medium">View details →</span>
                         </div>
                     </a>
-            `            
-        })
+            `              
+        });
 
         allCards.innerHTML = output
-        loadBtn.style.display = count >= countries.length ? "none" : "block"    
-    })
+        loadBtn.style.display = count >= data.length ? "none" : "block"    
 }
-
-allFlags()
