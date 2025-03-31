@@ -1,11 +1,19 @@
-function searchCountries(){
-    const search = document.getElementById("search")
+import { getData } from "./service.js";
+
+let data
+async function verData() {
+    data = await getData()
+    searchCountries()
+}
+verData()
+
+
+window.searchCountries = function() {
+    document.getElementById("search").addEventListener("input", searchCountries);
     allCards.innerHTML = ""
-    fetch("https://raw.githubusercontent.com/TheOksigen/purfect_data/refs/heads/main/country.json")
-    .then((response) => response.json())
-    .then((countries) =>{
         let output = ""
-        countries.filter((country) => country.name.toLowerCase().startsWith(search.value.toLowerCase())).forEach(country => {
+        data.filter((country) => country.name.toLowerCase().startsWith(search.value.toLowerCase()))
+        .forEach(country => {
             output+= `
                 <a href="https://country-explorer-by-atilla.vercel.app/details.html?id=${country.alpha3Code}" class="w-full max-w-sm flex flex-col rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 bg-white dark:bg-gray-800">
                 <div class="relative w-full h-48">
@@ -46,5 +54,4 @@ function searchCountries(){
 
         allCards.innerHTML = output
         loadBtn.style.display = "none"
-    })
 }
