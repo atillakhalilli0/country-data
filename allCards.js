@@ -1,6 +1,5 @@
 import { getData } from "./service.js";
 
-
 let data
 async function verData() {
     data = await getData()

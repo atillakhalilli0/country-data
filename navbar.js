@@ -1,3 +1,12 @@
+import { getData } from "./service.js";
+
+let data
+async function verData() {
+    data = await getData()
+    showRegions()
+}
+verData()  
+
 const navbar = document.getElementById("navbar")
 const mobileMenuButton = document.getElementById("mobile-menu-button")
 const mobileRegionsMenu = document.getElementById("mobile-regions-menu")
@@ -7,10 +16,7 @@ mobileMenuButton.addEventListener("click", () => {
 })
 
 function showRegions() {
-  fetch("https://raw.githubusercontent.com/TheOksigen/purfect_data/refs/heads/main/country.json")
-    .then((response) => response.json())
-    .then((countries) => {
-      const uniqueRegions = [...new Set(countries.map(country => country.region).filter(region => region))]
+      const uniqueRegions = [...new Set(data.map(country => country.region).filter(region => region))]
       
       const desktopMenu = document.getElementById("desktop-regions-menu")
       desktopMenu.innerHTML = uniqueRegions.map(region => `
@@ -20,8 +26,4 @@ function showRegions() {
       mobileRegionsMenu.innerHTML = uniqueRegions.map(region => `
         <a href="https://country-explorer-by-atilla.vercel.app/regions.html?id=${region}" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">${region}</a>
       `).join("")
-    })
-    .catch(error => console.error("Error fetching regions:", error))
 }
-
-showRegions()
